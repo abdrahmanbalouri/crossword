@@ -10,7 +10,6 @@ func canPlaceHorizontal(puz []string, word string, row, col int) bool {
 	}
 	for k := 0; k < len(word); k++ {
 		c := puz[row][col+k]
-		fmt.Println(string(c))
 		if c == '.' {
 			return false
 		}
@@ -92,7 +91,6 @@ func solve(puz []string, words []string, index int) bool {
 			}
 			if canPlaceVertical(puz, words[index], i, j) {
 				placeVertical(puz, words[index], i, j)
-				fmt.Println(puz)
 				if solve(puz, words, index+1) {
 					return true
 				}
@@ -106,20 +104,39 @@ func solve(puz []string, words []string, index int) bool {
 }
 
 func main() {
-	puzzle := `2001
-0..0
-1000
-0..0`
+const puzzle = `...1...........
+..1000001000...
+...0....0......
+.1......0...1..
+.0....100000000
+100000..0...0..
+.0.....1001000.
+.0.1....0.0....
+.10000000.0....
+.0.0......0....
+.0.0.....100...
+...0......0....
+..........0....`
 
 	puz := strings.Split(puzzle, "\n")
-	words := []string{"casa", "alan", "ciao", "anta"}
+	words := []string{ "sun",
+  "sunglasses",
+  "suncream",
+  "swimming",
+  "bikini",
+  "beach",
+  "icecream",
+  "tan",
+  "deckchair",
+  "sand",
+  "seaside",
+  "sandals",}
 
 	if solve(puz, words, 0) {
 		for _, line := range puz {
 			fmt.Println(line)
 		}
 	} else {
-		fmt.Println(puz)
 		fmt.Println("Error")
 	}
 
