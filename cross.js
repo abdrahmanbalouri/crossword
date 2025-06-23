@@ -88,22 +88,26 @@ function canplacehorizontal(newpuzle ,words,i,j){
 }
 
 function placehorizontal(newpuzle,words,i,j){
+    let r = newpuzle[i].split('')
 
     for(let n=0;n<words.length;n++){
-           newpuzle[i][j+n]=words[n]
+           r[j+n]=words[n]
 
     }
 
-
+  newpuzle[i]=r.join('')
 
 
 }
 function removehorizontal(newpuzle,words,i,j){
-       for(let n=0;n<words.length;n++){
-           newpuzle[i][j+n]= '1'
+     let r = newpuzle[i].split('')
+
+    for(let n=0;n<words.length;n++){
+           r[j+n]='1'
 
     }
 
+  newpuzle[i]=r.join('')
 }
 
 function canplacevertical(newpuzle,words,i,j){
@@ -136,23 +140,29 @@ function placevertical(newpuzle,words,i,j){
 
 
  for(let n=0;n<words.length;n++){
-           newpuzle[i+n][j]=words[n]
+    let r = newpuzle[i+n].split('')
+    r[j]=  words[n]
+    newpuzle[i+n]=r.join('')
 
+  
     }
 
 }
 
 function removevertical(newpuzle,words,i,j){
-for(let n=0;n<words.length;n++){
-           newpuzle[i+n][j]='1'
 
+ for(let n=0;n<words.length;n++){
+    let r = newpuzle[i+n].split('')
+    r[j]=  '1'
+    newpuzle[i+n]=r.join('')
+
+  
     }
-
 
 
 }
 
-const jj =solve(newpuzle,words,0)
+solve(newpuzle,words,0)
 
  console.log(newpuzle.join('\n'));
  
