@@ -10,6 +10,7 @@ func canPlaceHorizontal(puz []string, word string, row, col int) bool {
 	}
 	for k := 0; k < len(word); k++ {
 		c := puz[row][col+k]
+		fmt.Println(string(c))
 		if c == '.' {
 			return false
 		}
@@ -118,6 +119,7 @@ func main() {
 			fmt.Println(line)
 		}
 	} else {
+		fmt.Println(puz)
 		fmt.Println("Error")
 	}
 

@@ -6,16 +6,14 @@ const words = ['casa', 'alan', 'ciao', 'anta']
 
 
 const newpuzle = emptyPuzzle.split('\n')
-console.log(newpuzle);
 newpuzle[0][2]='kkkkk'
-console.log(newpuzle);
 
 
 
 
 
 function solve(newpuzle ,words ,index){
-    if (index ==words.length-1 ){
+    if (index ==words.length ){
 
         return  true
     }
@@ -66,17 +64,23 @@ function solve(newpuzle ,words ,index){
 }
 
 function canplacehorizontal(newpuzle ,words,i,j){
-    if(j +words.length >words[i]){
+    if(j+words.length >newpuzle[i].length){
         return false
     }
 
     for(let n =0;n<words.length;n++){
 
         let c = newpuzle[i][j+n]
+        
+        
          if(c =='.'){
+          
             return false
          }
          if(c != '1'&& c!='2'&& c!= words[n]&& c!=='0'){
+          
+          
+          
             return false
          }
 
@@ -94,7 +98,7 @@ function placehorizontal(newpuzle,words,i,j){
            r[j+n]=words[n]
 
     }
-
+        
   newpuzle[i]=r.join('')
 
 
@@ -162,7 +166,14 @@ function removevertical(newpuzle,words,i,j){
 
 }
 
-solve(newpuzle,words,0)
-
+let kk =solve(newpuzle,words,0)
+if(kk){
  console.log(newpuzle.join('\n'));
+
+
+}else{
+  console.log('eroor');
+  
+}
+
  
