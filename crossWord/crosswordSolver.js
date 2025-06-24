@@ -2,6 +2,7 @@ import {
   verifyStarts,
   canplacehorizontal,
   canplacevertical,
+  Input,
 } from './utils/verifier.js'
 
 import {
@@ -11,8 +12,8 @@ import {
   removevertical,
 } from './utils/solver.js'
 
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['casa', 'alan', 'ciao', 'anta']
+const puzzle = `1000`;
+const words = [];
 
 if (typeof puzzle !== 'string' || !Array.isArray(words) || words.length === 0) {
   
@@ -59,6 +60,13 @@ function solve(newpuzle, words, index) {
 }
 
 function crosswordSolver(puzzle,words){
+
+  const isValid = Input(puzzle, words);
+  if (!isValid){
+    console.error('Error');
+    process.exit(1);
+  }
+  
   const NewPuzzle = puzzle.split('\n')
   
   solve(NewPuzzle, words, 0)
@@ -68,5 +76,6 @@ function crosswordSolver(puzzle,words){
 
 
 crosswordSolver(puzzle,words)
+
 
 solutions.length === 1 ? console.log(solutions[0])  : console.log('Error'); 

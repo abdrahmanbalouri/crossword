@@ -46,3 +46,21 @@ export function canplacehorizontal(newpuzle, word, i, j) {
 
   return true
 }
+
+export function Input(puzzle, words) {
+  if (puzzle.includes(' ')) return false;
+
+  if (!Array.isArray(words) || words.length === 0) return false;
+
+  if (new Set(words).size !== words.length) return false;
+
+  if (words.some(word => typeof word !== 'string' || !/^[a-zA-Z]+$/.test(word))) {
+    return false;
+  }
+
+  return true;
+}
+
+
+// const puzzle = '   2001\n   0..0\n   1000\n   0..0'
+// const words = ['casa', 'alan', 'ciao', 'anta']
