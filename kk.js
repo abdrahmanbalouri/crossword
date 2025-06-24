@@ -1,9 +1,17 @@
-const puzzle = '2000\n0...\n0...\n0...'
-const words = ['abba', 'assa']
+const puzzle = '1000\n1000'
+
+
+const words = ['casa', 'an']
+
 
 const k = puzzle.split('\n')
 const newpuzle = puzzle.split('\n')
 const startCount = newpuzle.map(row => row.split('').map(_ => 0))
+const previousCharStack = newpuzle.map(
+  row => row.split('').map(() => [])
+)
+console.log(previousCharStack);
+
 
 const solutions = []
 
@@ -55,6 +63,7 @@ function placehorizontal(newpuzle, word, i, j) {
   startCount[i][j]++
   let row = newpuzle[i].split('')
   for (let n = 0; n < word.length; n++) {
+        previousCharStack[i][j+n].push(row[j+n]) 
     row[j + n] = word[n]
   }
   newpuzle[i] = row.join('')
@@ -64,7 +73,7 @@ function removehorizontal(newpuzle, word, i, j) {
   startCount[i][j]--
   let row = newpuzle[i].split('')
   for (let n = 0; n < word.length; n++) {
-    row[j + n] = k[i][j + n]
+    row[j + n] = previousCharStack[i][j+n].pop() 
   }
   newpuzle[i] = row.join('')
 }
@@ -89,6 +98,7 @@ function placevertical(newpuzle, word, i, j) {
   startCount[i][j]++
   for (let n = 0; n < word.length; n++) {
     let row = newpuzle[i + n].split('')
+      previousCharStack[i+n][j].push(row[j])
     row[j] = word[n]
     newpuzle[i + n] = row.join('')
   }
@@ -98,7 +108,7 @@ function removevertical(newpuzle, word, i, j) {
   startCount[i][j]--
   for (let n = 0; n < word.length; n++) {
     let row = newpuzle[i + n].split('')
-    row[j] = k[i + n][j]
+    row[j] =  previousCharStack[i+n][j].pop()
     newpuzle[i + n] = row.join('')
   }
 }
@@ -120,10 +130,12 @@ function verifyStarts() {
 }
 
 solve(newpuzle, words, 0)
-  console.log(solutions);
+console.log(solutions);
+
   
 if (solutions.length === 1) {
-  console.log(solutions[0])  
+  console.log(solutions[0]) 
 } else {
-  console.log('error')      
+  console.log('error')       
 }
+
