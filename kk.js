@@ -5,12 +5,10 @@ const k = puzzle.split('\n')
 const newpuzle = puzzle.split('\n')
 const startCount = newpuzle.map(row => row.split('').map(_ => 0))
 
-// 🔥 NEW/CHANGED: Store all valid solutions
 const solutions = []
 
 function solve(newpuzle, words, index) {
   if (index === words.length) {
-    // 🔥 NEW/CHANGED: check verifyStarts() before storing
     if (verifyStarts()) {
       solutions.push(newpuzle.join('\n'))
     }
@@ -121,13 +119,11 @@ function verifyStarts() {
   return true
 }
 
-// 🔥 NEW/CHANGED: Run solver without stopping at first solution
 solve(newpuzle, words, 0)
   console.log(solutions);
   
-// 🔥 NEW/CHANGED: Decide what to print
 if (solutions.length === 1) {
-  console.log(solutions[0])  // exactly one solution
+  console.log(solutions[0])  
 } else {
-  console.log('error')       // none or multiple solutions
+  console.log('error')      
 }
