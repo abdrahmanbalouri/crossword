@@ -1,16 +1,11 @@
-const puzzle = '1000\n1000'
-
-
-const words = ['casa', 'an']
-
-
+const puzzle = '2001\n0..0\n1000\n0..0'
+const words = ['casa', 'alan', 'ciao', 'anta']
 const k = puzzle.split('\n')
 const newpuzle = puzzle.split('\n')
 const startCount = newpuzle.map(row => row.split('').map(_ => 0))
 const previousCharStack = newpuzle.map(
   row => row.split('').map(() => [])
 )
-console.log(previousCharStack);
 
 
 const solutions = []
@@ -129,10 +124,20 @@ function verifyStarts() {
   return true
 }
 
-solve(newpuzle, words, 0)
-console.log(solutions);
 
-  
+
+ 
+
+function crosswordSolver(puzzle,words){
+  const newpuzle = puzzle.split('\n')
+
+
+solve(newpuzle, words, 0)
+
+}
+
+crosswordSolver(puzzle,words)
+
 if (solutions.length === 1) {
   console.log(solutions[0]) 
 } else {
